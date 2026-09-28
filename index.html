@@ -532,10 +532,37 @@ Bienvenido a mi espacio personal. Con más de una década perfeccionando las art
         import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc, updateDoc, onSnapshot, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Firebase Initialization Context
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-galeria-app';
-        const firebaseConfigStr = typeof __firebase_config !== 'undefined' ? __firebase_config : '{}';
-        const firebaseConfig = JSON.parse(firebaseConfigStr);
+        // ==============================================================================
+        // 🔴 PASO 1: CONFIGURACIÓN DE FIREBASE (¡REEMPLAZA ESTO CON TUS DATOS!)
+        // ==============================================================================
+        // Si descargas este archivo para subirlo a tu propio hosting o GitHub Pages,
+        // debes copiar y pegar aquí el objeto de configuración que te da Firebase:
+        const miConfiguracionManual = // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAUPre7jTNSVDmbNT_MR068NrTF-nUj-vs",
+  authDomain: "jonswerart-e0d50.firebaseapp.com",
+  projectId: "jonswerart-e0d50",
+  storageBucket: "jonswerart-e0d50.firebasestorage.app",
+  messagingSenderId: "763995121596",
+  appId: "1:763995121596:web:5707b8f6671efbd021edb9"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);;
+
+        // Firebase Initialization Context (Maneja tanto la versión local como la nube)
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'mi-galeria-arte-oficial';
+        
+        let firebaseConfig = Object.keys(miConfiguracionManual).length > 0 ? miConfiguracionManual : {};
+        if (Object.keys(firebaseConfig).length === 0 && typeof __firebase_config !== 'undefined') {
+            firebaseConfig = JSON.parse(__firebase_config);
+        }
+        
         let initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
 
         let db, auth;
