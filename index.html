@@ -74,7 +74,6 @@
     <!-- HEADER / NAVIGATION BAR -->
     <header class="sticky top-0 z-40 w-full glass-panel border-b border-cyan-900/40 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
             <a href="#" class="flex items-center gap-3 group">
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-400 via-purple-500 to-pink-500 p-[2px] transition-transform duration-300 group-hover:scale-105">
                     <div class="w-full h-full bg-artDark rounded-[10px] flex items-center justify-center">
@@ -89,7 +88,6 @@
                 </div>
             </a>
 
-            <!-- Navigation Links -->
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
                 <a href="#galeria" class="hover:text-cyan-400 transition-colors flex items-center gap-2">
                     <i class="fa-solid fa-images text-xs text-cyan-400"></i> Galería
@@ -102,14 +100,14 @@
                 </a>
             </nav>
 
-            <!-- Artist Mode Switcher -->
             <div class="flex items-center gap-3">
                 <button id="artist-mode-btn" onclick="toggleArtistModeModal()" class="relative group px-4 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 flex items-center gap-2 border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 hover:bg-cyan-400 hover:text-gray-950 shadow-lg shadow-cyan-500/10">
                     <i id="artist-status-icon" class="fa-solid fa-lock text-sm"></i>
                     <span id="artist-status-text">Modo Artista</span>
+                    <!-- Notificación de mensajes nuevos -->
+                    <span id="global-notification-dot" class="hidden absolute -top-1 -right-1 w-3.5 h-3.5 bg-pink-500 border-2 border-artDark rounded-full animate-pulse"></span>
                 </button>
                 
-                <!-- Mobile Navigation Menu Toggle -->
                 <button onclick="toggleMobileMenu()" class="md:hidden text-gray-300 hover:text-white p-2">
                     <i class="fa-solid fa-bars text-xl"></i>
                 </button>
@@ -126,10 +124,8 @@
 
     <!-- HERO SECTION -->
     <section class="relative overflow-hidden py-16 lg:py-24 border-b border-cyan-900/30">
-        <!-- Background Ambient Cyber Glows -->
         <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/15 rounded-full blur-[120px] pointer-events-none"></div>
         <div class="absolute bottom-10 right-10 w-80 h-80 bg-pink-500/15 rounded-full blur-[120px] pointer-events-none"></div>
-        <div class="absolute top-10 left-10 w-80 h-80 bg-purple-600/15 rounded-full blur-[120px] pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-artBorder/80 border border-cyan-500/30 text-cyan-300 text-xs font-semibold uppercase tracking-widest mb-6">
@@ -155,7 +151,6 @@
                 </a>
             </div>
 
-            <!-- Stats Bar -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-16 pt-12 border-t border-cyan-900/40">
                 <div class="p-4 rounded-2xl glass-panel">
                     <div class="font-serif text-3xl font-bold text-cyan-400" id="stat-total-art">0</div>
@@ -182,12 +177,12 @@
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
             <div>
                 <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mb-2">Galería de Exposición</h2>
-                <p class="text-gray-400 text-sm">Filtra por disciplina artística para apreciar cada trabajo detalladamente.</p>
+                <p class="text-gray-400 text-sm">Filtra por disciplina artística para apreciar cada trabajo detalladamente (Actualización en tiempo real).</p>
             </div>
 
             <!-- Artist Upload Trigger -->
             <div class="flex items-center gap-3">
-                <button onclick="openUploadModal()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-500 hover:opacity-90 text-white font-semibold text-xs tracking-wider uppercase transition-all duration-300 shadow-md flex items-center gap-2">
+                <button onclick="openUploadModal()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-500 hover:opacity-90 text-white font-semibold text-xs tracking-wider uppercase transition-all duration-300 shadow-md flex items-center gap-2 hidden" id="upload-new-art-btn">
                     <i class="fa-solid fa-plus-circle text-base"></i> Subir Nueva Obra
                 </button>
             </div>
@@ -214,10 +209,9 @@
 
         <!-- Gallery Grid -->
         <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Dynamic Artwork Cards Inserted Here via JS -->
+            <!-- Dynamic Artwork Cards Inserted Here -->
         </div>
 
-        <!-- Empty State -->
         <div id="gallery-empty" class="hidden text-center py-20 bg-artCard/30 rounded-3xl border border-dashed border-cyan-900/40">
             <i class="fa-solid fa-box-open text-5xl text-gray-600 mb-4"></i>
             <h3 class="text-xl font-bold text-gray-300">No hay obras registradas en esta categoría</h3>
@@ -232,7 +226,7 @@
                 <span class="text-purple-400 text-xs font-bold uppercase tracking-widest">Atelier Interactivo</span>
                 <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white mt-1 mb-4">Mesa de Ideas & Comisiones</h2>
                 <p class="text-gray-400 text-sm sm:text-base">
-                    ¿Tienes una idea para una pintura, retrato, escultura o tatuaje exclusivo? Adjunta tus fotos de referencia, escribe tu consulta y dialogaremos directamente en el chat para hacerla realidad.
+                    Adjunta tus fotos de referencia, escribe tu consulta y dialogaremos directamente en el chat en tiempo real.
                 </p>
             </div>
 
@@ -268,11 +262,11 @@
                                     <div id="commission-upload-prompt" class="space-y-1">
                                         <i class="fa-solid fa-cloud-arrow-up text-2xl text-cyan-400"></i>
                                         <p class="text-xs text-gray-300 font-medium">Haz clic o arrastra tu fotografía aquí</p>
-                                        <p class="text-[10px] text-gray-500">PNG, JPG o WEBP (Soporta vistas previas)</p>
+                                        <p class="text-[10px] text-gray-500">PNG, JPG o WEBP (Será comprimida automáticamente)</p>
                                     </div>
-                                    <div id="commission-image-preview" class="hidden flex flex-col items-center gap-2">
+                                    <div id="commission-image-preview" class="hidden flex flex-col items-center gap-2 relative z-10">
                                         <img src="" id="comm-preview-img" class="h-28 rounded-lg object-cover border border-cyan-400/40">
-                                        <span class="text-[10px] text-cyan-400">Cambiar imagen</span>
+                                        <span class="text-[10px] text-cyan-400 bg-artDark/80 px-2 py-1 rounded cursor-pointer pointer-events-none">Cambiar imagen</span>
                                     </div>
                                 </div>
                             </div>
@@ -282,7 +276,7 @@
                                 <textarea id="client-msg" required rows="3" placeholder="Describe los colores, dimensiones, historia o detalles particulares que imaginas..." class="w-full bg-artDark/80 border border-artBorder rounded-xl px-4 py-3 text-sm text-gray-200 focus:outline-none focus:border-cyan-400 custom-scrollbar"></textarea>
                             </div>
 
-                            <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 hover:opacity-90 font-bold text-gray-950 text-xs uppercase tracking-wider shadow-lg transition-transform active:scale-95">
+                            <button type="submit" id="btn-submit-comm" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 hover:opacity-90 font-bold text-gray-950 text-xs uppercase tracking-wider shadow-lg transition-transform active:scale-95">
                                 <i class="fa-solid fa-comments mr-2"></i> Iniciar Consulta & Chat
                             </button>
                         </form>
@@ -293,8 +287,8 @@
                 <div class="lg:col-span-7 glass-panel p-6 sm:p-8 rounded-3xl border border-cyan-900/40 flex flex-col h-[650px]">
                     <div class="flex items-center justify-between pb-4 border-b border-artBorder">
                         <div>
-                            <h3 class="font-serif text-xl font-bold text-white">Consultas & Conversaciones en Vivo</h3>
-                            <p class="text-xs text-gray-400">Haz clic en una consulta para ver las fotos adjuntas e interactuar en el chat.</p>
+                            <h3 class="font-serif text-xl font-bold text-white">Consultas & Chat Global</h3>
+                            <p class="text-xs text-gray-400">Interacción en tiempo real. Selecciona una consulta para responder.</p>
                         </div>
                         <span id="comm-count-badge" class="px-3 py-1 rounded-full bg-purple-500/20 border border-purple-500/40 text-purple-300 text-xs font-bold">
                             0 solicitudes
@@ -303,12 +297,10 @@
 
                     <!-- Main Chat Split View -->
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-4 flex-1 mt-4 overflow-hidden">
-                        <!-- Consultations List Sidebar -->
                         <div id="consultation-list" class="md:col-span-5 space-y-2 overflow-y-auto custom-scrollbar pr-1 border-r border-artBorder max-h-[220px] md:max-h-full">
-                            <!-- Items inserted dynamically via JS -->
+                            <!-- Items inserted dynamically -->
                         </div>
 
-                        <!-- Active Conversation Area -->
                         <div id="chat-active-area" class="md:col-span-7 flex flex-col justify-between bg-artDark/60 rounded-2xl p-4 border border-artBorder">
                             <!-- Selected consultation state rendered here -->
                         </div>
@@ -321,10 +313,15 @@
     <!-- ABOUT THE ARTIST SECTION -->
     <section id="sobre-mi" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="glass-panel rounded-3xl p-8 lg:p-12 border border-cyan-900/40 relative overflow-hidden">
+            <!-- Edit Profile Trigger (Only visible in Artist Mode) -->
+            <button id="edit-profile-btn" onclick="openEditProfileModal()" class="hidden absolute top-4 right-4 z-20 px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-bold text-xs uppercase tracking-wider shadow-lg flex items-center gap-2 transition-colors">
+                <i class="fa-solid fa-pen-to-square"></i> Editar Perfil
+            </button>
+
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div class="lg:col-span-4 relative group">
                     <div class="w-full h-80 sm:h-96 rounded-2xl overflow-hidden border-2 border-cyan-500/30 shadow-2xl relative">
-                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80" alt="El Artista" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <img id="profile-image" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80" alt="El Artista" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-artDark via-transparent to-transparent"></div>
                     </div>
                     <div class="absolute bottom-4 left-4 right-4 p-4 glass-panel rounded-xl border border-cyan-500/20 text-center">
@@ -336,8 +333,8 @@
                 <div class="lg:col-span-8 space-y-4">
                     <span class="px-3 py-1 rounded-full bg-pink-500/10 border border-pink-500/30 text-pink-300 text-xs font-bold uppercase tracking-wider">Filosofía Artística</span>
                     <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">"Cada obra es una conversación entre la imaginación y la técnica."</h2>
-                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
-                        Bienvenido a mi espacio personal. Con más de una década perfeccionando las artes visuales, me dedico a crear piezas únicas en óleo, acrílico, escultura en variados medios y piezas corporales (tatuajes de alta precisión). Este portal fue diseñado para conectar directamente contigo: desde la visualización de mis últimas obras hasta el diseño colaborativo de tu próximo encargo.
+                    <p id="profile-bio" class="text-gray-300 text-sm sm:text-base leading-relaxed whitespace-pre-wrap">
+Bienvenido a mi espacio personal. Con más de una década perfeccionando las artes visuales, me dedico a crear piezas únicas en óleo, acrílico, escultura en variados medios y piezas corporales (tatuajes de alta precisión). Este portal fue diseñado para conectar directamente contigo: desde la visualización de mis últimas obras hasta el diseño colaborativo de tu próximo encargo.
                     </p>
 
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-artBorder">
@@ -367,68 +364,48 @@
                 <span class="font-serif font-bold text-white text-sm">Atelier & Galería de Arte</span>
                 <span class="text-xs text-gray-500">© 2026 Todos los derechos reservados.</span>
             </div>
-            <div class="flex items-center gap-6 text-gray-400 text-sm">
-                <a href="#galeria" class="hover:text-cyan-400 transition-colors">Galería</a>
-                <a href="#comisiones" class="hover:text-cyan-400 transition-colors">Encargos</a>
-                <a href="#" onclick="toggleArtistModeModal(); return false;" class="text-cyan-400/80 hover:text-cyan-300 font-semibold"><i class="fa-solid fa-key text-xs mr-1"></i> Acceso Artista</a>
-            </div>
         </div>
     </footer>
 
     <!-- LIGHTBOX / ARTWORK DETAIL MODAL -->
     <div id="artwork-modal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
         <div class="relative max-w-5xl w-full bg-artCard rounded-3xl border border-cyan-900/40 shadow-2xl overflow-hidden my-auto max-h-[90vh] flex flex-col lg:flex-row">
-            
-            <!-- Close Button -->
             <button onclick="closeArtworkModal()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center transition-colors">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
 
-            <!-- Image Viewport with Carousel Controls -->
             <div class="lg:w-3/5 relative bg-black flex items-center justify-center min-h-[300px] lg:min-h-[500px]">
                 <img id="modal-art-image" src="" alt="Obra de Arte" class="max-h-[70vh] w-auto max-w-full object-contain">
-                
-                <!-- Carousel Nav -->
                 <button onclick="navigateGallery(-1)" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-cyan-400 hover:text-gray-950 text-white flex items-center justify-center transition-colors">
                     <i class="fa-solid fa-chevron-left"></i>
                 </button>
                 <button onclick="navigateGallery(1)" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-cyan-400 hover:text-gray-950 text-white flex items-center justify-center transition-colors">
                     <i class="fa-solid fa-chevron-right"></i>
                 </button>
-
-                <!-- Category Badge over Image -->
                 <span id="modal-art-category" class="absolute top-4 left-4 px-3 py-1 rounded-full bg-cyan-400 text-gray-950 text-xs font-bold uppercase tracking-wider shadow"></span>
             </div>
 
-            <!-- Details & Comments Side Panel -->
             <div class="lg:w-2/5 p-6 flex flex-col justify-between overflow-y-auto custom-scrollbar bg-artCard">
                 <div>
                     <div class="flex items-start justify-between gap-4 mb-2">
                         <h3 id="modal-art-title" class="font-serif text-2xl font-bold text-white"></h3>
-                        <!-- Like Button in Modal -->
                         <button id="modal-art-like-btn" onclick="toggleModalLike()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-pink-500/10 border border-pink-500/30 text-pink-400 hover:bg-pink-500 hover:text-white transition-all text-xs font-bold">
                             <i class="fa-solid fa-heart"></i>
                             <span id="modal-art-like-count">0</span>
                         </button>
                     </div>
-
                     <p id="modal-art-medium" class="text-xs text-cyan-400 font-semibold uppercase tracking-wider mb-4"></p>
                     <p id="modal-art-desc" class="text-gray-300 text-sm leading-relaxed mb-6 border-b border-artBorder pb-4"></p>
 
-                    <!-- Comments Header -->
                     <div class="mb-4">
                         <h4 class="font-bold text-sm text-white flex items-center gap-2">
                             <i class="fa-solid fa-comments text-cyan-400"></i> Comentarios de Visitantes
                         </h4>
                     </div>
-
-                    <!-- Comments List -->
                     <div id="modal-comments-list" class="space-y-3 max-h-48 overflow-y-auto custom-scrollbar mb-4 pr-1">
                         <!-- Dynamic Comments -->
                     </div>
                 </div>
-
-                <!-- Add Comment Form -->
                 <form onsubmit="handleAddArtworkComment(event)" class="mt-4 pt-4 border-t border-artBorder space-y-2">
                     <div class="grid grid-cols-2 gap-2">
                         <input type="text" id="comment-author" required placeholder="Tu nombre" class="w-full bg-artDark border border-artBorder rounded-lg px-3 py-2 text-xs text-white focus:border-cyan-400 focus:outline-none">
@@ -442,25 +419,55 @@
         </div>
     </div>
 
+    <!-- EDIT PROFILE MODAL (ARTIST ONLY) -->
+    <div id="edit-profile-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+        <div class="relative max-w-lg w-full bg-artCard rounded-3xl border border-emerald-500/50 shadow-2xl p-6 sm:p-8 my-auto">
+            <button onclick="closeEditProfileModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <div class="mb-6">
+                <span class="text-emerald-400 text-xs font-bold uppercase tracking-widest"><i class="fa-solid fa-shield-halved mr-1"></i> Panel de Control</span>
+                <h3 class="font-serif text-2xl font-bold text-white mt-1">Actualizar Perfil del Artista</h3>
+            </div>
+
+            <form onsubmit="handleProfileSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-gray-300 mb-1">Nueva Foto de Perfil (URL o Archivo)</label>
+                    <input type="file" id="edit-profile-file" accept="image/*" class="w-full text-xs text-gray-400 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-emerald-500 file:text-gray-950 hover:file:bg-emerald-400 mb-2">
+                    <p class="text-[10px] text-gray-500 text-center my-1">O ingresa un enlace directo:</p>
+                    <input type="url" id="edit-profile-url" placeholder="https://ejemplo.com/mifoto.jpg" class="w-full bg-artDark border border-artBorder rounded-xl px-4 py-2 text-xs text-white focus:border-emerald-400 focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-gray-300 mb-1">Biografía / Mensaje por defecto</label>
+                    <textarea id="edit-profile-bio-text" required rows="5" class="w-full bg-artDark border border-artBorder rounded-xl px-4 py-2.5 text-sm text-white focus:border-emerald-400 focus:outline-none custom-scrollbar"></textarea>
+                </div>
+
+                <div class="pt-2 flex justify-end gap-3">
+                    <button type="button" onclick="closeEditProfileModal()" class="px-4 py-2.5 rounded-xl border border-gray-700 text-xs text-gray-300 hover:bg-gray-800 font-semibold">Cancelar</button>
+                    <button type="submit" id="btn-save-profile" class="px-6 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-bold text-xs uppercase tracking-wider shadow-lg">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- ARTIST UPLOAD NEW ARTWORK MODAL -->
     <div id="upload-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
         <div class="relative max-w-lg w-full bg-artCard rounded-3xl border border-cyan-900/40 shadow-2xl p-6 sm:p-8 my-auto">
             <button onclick="closeUploadModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
-
             <div class="mb-6">
                 <span class="text-cyan-400 text-xs font-bold uppercase tracking-widest">Exclusivo del Artista</span>
                 <h3 class="font-serif text-2xl font-bold text-white mt-1">Subir Nueva Creación</h3>
-                <p class="text-xs text-gray-400">Publica tus nuevas pinturas, retratos, esculturas o tatuajes en la galería.</p>
+                <p class="text-xs text-gray-400">La obra será visible al instante para todos los visitantes.</p>
             </div>
-
             <form onsubmit="handleUploadArtworkSubmit(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-semibold uppercase text-gray-300 mb-1">Título de la Obra</label>
                     <input type="text" id="upload-title" required placeholder="Ej: Mirada Efímera N° 4" class="w-full bg-artDark border border-artBorder rounded-xl px-4 py-2.5 text-sm text-white focus:border-cyan-400 focus:outline-none">
                 </div>
-
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs font-semibold uppercase text-gray-300 mb-1">Categoría</label>
@@ -476,7 +483,6 @@
                         <input type="text" id="upload-medium" required placeholder="Ej: Óleo sobre Lienzo" class="w-full bg-artDark border border-artBorder rounded-xl px-3 py-2.5 text-sm text-white focus:border-cyan-400 focus:outline-none">
                     </div>
                 </div>
-
                 <div>
                     <label class="block text-xs font-semibold uppercase text-gray-300 mb-1">Fotografía de la Obra</label>
                     <div class="space-y-2">
@@ -484,20 +490,17 @@
                         <p class="text-[10px] text-gray-500 text-center">O ingresa URL directa de la imagen:</p>
                         <input type="url" id="upload-url" placeholder="https://ejemplo.com/imagen.jpg" oninput="previewUploadUrl(this.value)" class="w-full bg-artDark border border-artBorder rounded-xl px-4 py-2 text-xs text-white focus:border-cyan-400 focus:outline-none">
                     </div>
-                    <!-- Image Preview -->
                     <div id="upload-preview-box" class="mt-2 hidden text-center">
                         <img id="upload-preview-img" src="" class="h-36 mx-auto rounded-xl object-cover border border-cyan-400/40">
                     </div>
                 </div>
-
                 <div>
                     <label class="block text-xs font-semibold uppercase text-gray-300 mb-1">Descripción de la Pieza</label>
-                    <textarea id="upload-desc" required rows="3" placeholder="Contexto, inspiración, dimensiones o año de elaboración..." class="w-full bg-artDark border border-artBorder rounded-xl px-4 py-2.5 text-sm text-white focus:border-cyan-400 focus:outline-none custom-scrollbar"></textarea>
+                    <textarea id="upload-desc" required rows="3" class="w-full bg-artDark border border-artBorder rounded-xl px-4 py-2.5 text-sm text-white focus:border-cyan-400 focus:outline-none custom-scrollbar"></textarea>
                 </div>
-
                 <div class="pt-2 flex justify-end gap-3">
                     <button type="button" onclick="closeUploadModal()" class="px-4 py-2.5 rounded-xl border border-gray-700 text-xs text-gray-300 hover:bg-gray-800 font-semibold">Cancelar</button>
-                    <button type="submit" class="px-6 py-2.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-gray-950 font-bold text-xs uppercase tracking-wider shadow-lg">Publicar Obra</button>
+                    <button type="submit" id="btn-publish-art" class="px-6 py-2.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-gray-950 font-bold text-xs uppercase tracking-wider shadow-lg">Publicar Obra</button>
                 </div>
             </form>
         </div>
@@ -509,14 +512,11 @@
             <button onclick="closeArtistPinModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
-
             <div class="w-12 h-12 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center mx-auto mb-3 text-xl">
                 <i class="fa-solid fa-user-shield"></i>
             </div>
-
             <h3 class="font-serif text-xl font-bold text-white mb-1">Autenticación de Artista</h3>
-            <p class="text-xs text-gray-400 mb-4">Ingresa tu clave personal para activar el modo de edición y respuesta a consultas.</p>
-
+            <p class="text-xs text-gray-400 mb-4">Ingresa tu clave personal para activar edición y chat en vivo.</p>
             <form onsubmit="handleArtistAuth(event)" class="space-y-4">
                 <input type="password" id="artist-pin-input" placeholder="Contraseña de Artista" required class="w-full text-center tracking-wider font-mono text-base bg-artDark border border-artBorder rounded-xl px-4 py-3 text-white focus:border-cyan-400 focus:outline-none">
                 <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 hover:opacity-90 text-gray-950 font-bold text-xs uppercase tracking-wider">
@@ -526,147 +526,165 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        /* ==========================================================================
-           1. INITIAL STATE & MOCK DATA
-           ========================================================================== */
+    <!-- JAVASCRIPT LOGIC (WITH FIREBASE REAL-TIME SYNC) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc, updateDoc, onSnapshot, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Firebase Initialization Context
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-galeria-app';
+        const firebaseConfigStr = typeof __firebase_config !== 'undefined' ? __firebase_config : '{}';
+        const firebaseConfig = JSON.parse(firebaseConfigStr);
+        let initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        let db, auth;
+        let isFirebaseActive = false;
+
+        // State Variables
         let isArtistMode = false;
         let activeCategory = 'all';
         let currentModalArtIndex = 0;
-
-        // Sample Artworks
-        let artworks = [
-            {
-                id: 'art-1',
-                title: 'Océano Cósmico',
-                category: 'Pinturas',
-                medium: 'Óleo sobre Lienzo (120 x 90 cm)',
-                image: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1000&q=80',
-                description: 'Exploración de pigmentos azules deep y laminado de oro de 24k representando el movimiento perpetuo del cosmos.',
-                likes: 34,
-                userLiked: false,
-                comments: [
-                    { author: 'Camila R.', text: 'El contraste con los detalles dorados es sencillamente impresionante.', date: 'Hace 2 días' },
-                    { author: 'Mateo S.', text: '¿Disponible para venta directa?', date: 'Ayer' }
-                ]
-            },
-            {
-                id: 'art-2',
-                title: 'El Claroscuro del Alma',
-                category: 'Retratos',
-                medium: 'Acrílico & Grafito en Madera',
-                image: 'https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=1000&q=80',
-                description: 'Estudio hiperrealista enfocándose en la expresividad de la mirada y las sombras emocionales.',
-                likes: 48,
-                userLiked: false,
-                comments: [
-                    { author: 'Lucía V.', text: 'Increíble captura de la expresión.', date: 'Hace 5 días' }
-                ]
-            },
-            {
-                id: 'art-3',
-                title: 'Metamorfosis de Bronce',
-                category: 'Esculturas',
-                medium: 'Bronce Pulido & Base de Mármol Negro',
-                image: 'https://images.unsplash.com/photo-1544411047-c491e34a2465?auto=format&fit=crop&w=1000&q=80',
-                description: 'Escultura fluida tridimensional que representa la transición entre la naturaleza orgánica y la geometría abstracta.',
-                likes: 29,
-                userLiked: false,
-                comments: []
-            },
-            {
-                id: 'art-4',
-                title: 'Geometría Sagrada Neo-Tribal',
-                category: 'Tatuajes',
-                medium: 'Tinta Black & Grey en Piel',
-                image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=1000&q=80',
-                description: 'Diseño personalizado de antebrazo con gradientes suaves de sombras micro-sombreadas y líneas finas.',
-                likes: 62,
-                userLiked: false,
-                comments: [
-                    { author: 'Diego G.', text: 'Mi tatuaje favorito del estudio, curó perfectamente.', date: 'Hace 1 semana' }
-                ]
-            },
-            {
-                id: 'art-5',
-                title: 'Noche en el Valle de Jade',
-                category: 'Pinturas',
-                medium: 'Técnica Mixta sobre Lienzo',
-                image: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=1000&q=80',
-                description: 'Paisaje expresionista con pinceladas cargadas y relieve táctil con espátula.',
-                likes: 19,
-                userLiked: false,
-                comments: []
-            },
-            {
-                id: 'art-6',
-                title: 'Furia Mitológica',
-                category: 'Tatuajes',
-                medium: 'Custom Full Sleeve Tattoo',
-                image: 'https://images.unsplash.com/photo-1562962230-16e4623d36e6?auto=format&fit=crop&w=1000&q=80',
-                description: 'Manga completa basada en la mitología nórdica formulada a medida tras 4 sesiones de trabajo.',
-                likes: 53,
-                userLiked: false,
-                comments: []
-            }
-        ];
-
-        // Sample Consultations / Client Chat Requests
-        let consultations = [
-            {
-                id: 'comm-101',
-                clientName: 'Sonia Restrepo',
-                artType: 'Retratos',
-                description: 'Quisiera un retrato al óleo de mis abuelos a partir de una fotografía en blanco y negro antigua.',
-                image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
-                status: 'En Proceso',
-                timestamp: 'Hoy, 10:30 AM',
-                chat: [
-                    { sender: 'client', author: 'Sonia Restrepo', text: 'Hola maestro! Adjunté la foto de referencia. ¿Sería posible restaurar los tonos de luz al óleo?', time: '10:30 AM' },
-                    { sender: 'artist', author: 'Artista (Taller)', text: '¡Hola Sonia! Excelente fotografía. Sí, podemos enriquecer la paleta con tonos sepia cálidos y detalles al óleo. ¿Qué dimensiones tienes pensadas?', time: '11:15 AM' }
-                ]
-            },
-            {
-                id: 'comm-102',
-                clientName: 'Andrés Castro',
-                artType: 'Tatuajes',
-                description: 'Idea para cover-up en la espalda con diseño de fénix surrealista.',
-                image: 'https://images.unsplash.com/photo-1550537687-c91072c4792d?auto=format&fit=crop&w=600&q=80',
-                status: 'Pendiente',
-                timestamp: 'Ayer, 4:15 PM',
-                chat: [
-                    { sender: 'client', author: 'Andrés Castro', text: 'Me gustaría saber cuántas sesiones requeriríamos para adaptar esta idea a la espalda.', time: '4:15 PM' }
-                ]
-            }
-        ];
-
-        let selectedCommId = consultations[0].id;
+        let artworks = [];
+        let consultations = [];
+        let selectedCommId = null;
         let tempCommissionImageBase64 = '';
         let tempUploadImageBase64 = '';
+        let localLikedArtworks = new Set(); // To prevent infinite likes in one session
+
+        // Initialize App
+        async function initApp() {
+            try {
+                if (Object.keys(firebaseConfig).length > 0) {
+                    const app = initializeApp(firebaseConfig);
+                    db = getFirestore(app);
+                    auth = getAuth(app);
+                    
+                    if (initialAuthToken) {
+                        await signInWithCustomToken(auth, initialAuthToken);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+                    isFirebaseActive = true;
+                    console.log("Firebase Database Connected - Realtime Active");
+                    setupRealtimeListeners();
+                } else {
+                    console.error("Configuración de Firebase faltante. La persistencia en la nube no funcionará.");
+                    showToast("Error de conexión a la base de datos.", "error");
+                }
+            } catch (error) {
+                console.error("Error al iniciar Firebase:", error);
+                showToast("Modo Offline activo (sin nube).", "info");
+            }
+        }
 
         /* ==========================================================================
-           2. DOM RENDER & GALLERY LOGIC
+           COMPRESSION HELPER (Previene que imágenes grandes saturen la DB)
            ========================================================================== */
-        window.onload = function() {
-            renderGallery();
-            renderConsultationsList();
-            renderActiveChat();
-            updateStats();
-        };
+        function compressImage(file, callback) {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = event => {
+                const img = new Image();
+                img.src = event.target.result;
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const MAX_WIDTH = 800; // Resize to max 800px width
+                    let scaleSize = 1;
+                    if (img.width > MAX_WIDTH) {
+                        scaleSize = MAX_WIDTH / img.width;
+                    }
+                    canvas.width = img.width * scaleSize;
+                    canvas.height = img.height * scaleSize;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    const dataUrl = canvas.toDataURL('image/jpeg', 0.6); // Compress to 60% quality
+                    callback(dataUrl);
+                }
+            }
+        }
 
+        /* ==========================================================================
+           REAL-TIME SYNC LOGIC (FIREBASE ON-SNAPSHOT)
+           ========================================================================== */
+        function setupRealtimeListeners() {
+            // 1. Perfil del Artista
+            const profileRef = doc(db, 'artifacts', appId, 'public', 'data', 'config', 'profile');
+            onSnapshot(profileRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    if(data.image) document.getElementById('profile-image').src = data.image;
+                    if(data.bio) document.getElementById('profile-bio').innerText = data.bio;
+                }
+            }, (error) => console.error("Error sync perfil:", error));
+
+            // 2. Galería de Obras
+            const artworksRef = collection(db, 'artifacts', appId, 'public', 'data', 'artworks');
+            onSnapshot(artworksRef, (snapshot) => {
+                artworks = [];
+                snapshot.forEach(docSnap => {
+                    artworks.push({ id: docSnap.id, ...docSnap.data() });
+                });
+                artworks.sort((a,b) => (b.createdAt || 0) - (a.createdAt || 0)); // Descending sort
+                renderGallery();
+                updateStats();
+                
+                // Actualizar modal si está abierto
+                if (!document.getElementById('artwork-modal').classList.contains('hidden') && artworks.length > 0) {
+                    const currentArtId = artworks[currentModalArtIndex]?.id;
+                    const newIndex = artworks.findIndex(a => a.id === currentArtId);
+                    if(newIndex !== -1) {
+                        currentModalArtIndex = newIndex;
+                        renderModalComments();
+                        updateModalLikeUI();
+                    }
+                }
+            }, (error) => console.error("Error sync obras:", error));
+
+            // 3. Consultas y Chat
+            const commRef = collection(db, 'artifacts', appId, 'public', 'data', 'consultations');
+            onSnapshot(commRef, (snapshot) => {
+                consultations = [];
+                let hasUnread = false;
+
+                snapshot.forEach(docSnap => {
+                    const data = docSnap.data();
+                    consultations.push({ id: docSnap.id, ...data });
+                    if (data.status === 'Pendiente') hasUnread = true;
+                });
+                consultations.sort((a,b) => (b.createdAt || 0) - (a.createdAt || 0));
+
+                if (!selectedCommId && consultations.length > 0) {
+                    selectedCommId = consultations[0].id;
+                }
+
+                // Notificaciones para el artista
+                const dot = document.getElementById('global-notification-dot');
+                if (isArtistMode && hasUnread) {
+                    dot.classList.remove('hidden');
+                } else {
+                    dot.classList.add('hidden');
+                }
+
+                renderConsultationsList();
+                renderActiveChat();
+                updateStats();
+            }, (error) => console.error("Error sync chat:", error));
+        }
+
+        /* ==========================================================================
+           DOM RENDER & GALLERY LOGIC
+           ========================================================================== */
         function updateStats() {
             document.getElementById('stat-total-art').innerText = artworks.length;
-            const totalLikes = artworks.reduce((acc, curr) => acc + curr.likes, 0);
+            const totalLikes = artworks.reduce((acc, curr) => acc + (curr.likes || 0), 0);
             document.getElementById('stat-total-likes').innerText = totalLikes;
             document.getElementById('stat-commissions').innerText = consultations.length;
             document.getElementById('comm-count-badge').innerText = `${consultations.length} solicitudes`;
         }
 
-        function filterGallery(category) {
+        window.filterGallery = function(category) {
             activeCategory = category;
-            
-            // Update filter button styles
             document.querySelectorAll('.cat-btn').forEach(btn => {
                 if (btn.getAttribute('data-cat') === category) {
                     btn.className = "cat-btn active px-5 py-2.5 rounded-xl text-xs font-bold tracking-wider uppercase transition-all whitespace-nowrap bg-amber-500 text-gray-950 shadow-lg shadow-amber-500/20";
@@ -674,18 +692,15 @@
                     btn.className = "cat-btn px-5 py-2.5 rounded-xl text-xs font-bold tracking-wider uppercase transition-all whitespace-nowrap bg-artCard text-gray-300 hover:text-white border border-gray-800 hover:border-amber-500/50";
                 }
             });
-
             renderGallery();
-        }
+        };
 
         function renderGallery() {
             const grid = document.getElementById('gallery-grid');
             const emptyState = document.getElementById('gallery-empty');
             grid.innerHTML = '';
 
-            const filtered = activeCategory === 'all' 
-                ? artworks 
-                : artworks.filter(item => item.category === activeCategory);
+            const filtered = activeCategory === 'all' ? artworks : artworks.filter(item => item.category === activeCategory);
 
             if (filtered.length === 0) {
                 emptyState.classList.remove('hidden');
@@ -694,46 +709,38 @@
                 emptyState.classList.add('hidden');
             }
 
-            filtered.forEach((art) => {
+            filtered.forEach((art, index) => {
                 const globalIndex = artworks.findIndex(a => a.id === art.id);
+                const hasLiked = localLikedArtworks.has(art.id);
+                const commentsCount = art.comments ? art.comments.length : 0;
+                
                 const card = document.createElement('div');
                 card.className = "group glass-panel rounded-3xl overflow-hidden border border-artBorder hover:border-cyan-400/50 transition-all duration-500 flex flex-col justify-between hover:-translate-y-1 shadow-xl";
-                
                 card.innerHTML = `
                     <div class="relative overflow-hidden cursor-pointer h-72" onclick="openArtworkModal(${globalIndex})">
                         <img src="${art.image}" alt="${art.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onerror="this.src='https://placehold.co/600x400/11182c/00f0ff?text=Obra+de+Arte'">
                         <div class="absolute inset-0 bg-gradient-to-t from-artCard via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
-                        
-                        <!-- Category Badge -->
                         <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-artDark/80 backdrop-blur-md border border-cyan-500/30 text-cyan-300 text-[10px] font-bold uppercase tracking-wider">
                             ${art.category}
                         </span>
-
-                        <!-- Zoom overlay icon -->
                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
-                            <span class="w-12 h-12 rounded-full bg-cyan-400 text-gray-950 flex items-center justify-center text-lg font-bold shadow-lg shadow-cyan-400/30">
-                                <i class="fa-solid fa-expand"></i>
-                            </span>
+                            <span class="w-12 h-12 rounded-full bg-cyan-400 text-gray-950 flex items-center justify-center text-lg font-bold shadow-lg shadow-cyan-400/30"><i class="fa-solid fa-expand"></i></span>
                         </div>
                     </div>
-
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
                             <h3 class="font-serif text-xl font-bold text-white group-hover:text-cyan-400 transition-colors line-clamp-1">${art.title}</h3>
                             <p class="text-xs text-cyan-400/90 font-medium mt-1 mb-2">${art.medium}</p>
                             <p class="text-xs text-gray-400 line-clamp-2 leading-relaxed mb-4">${art.description}</p>
                         </div>
-
                         <div class="pt-4 border-t border-artBorder flex items-center justify-between">
-                            <!-- Like Button -->
-                            <button onclick="toggleGalleryLike('${art.id}', event)" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full ${art.userLiked ? 'bg-pink-500 text-white' : 'bg-artDark hover:bg-pink-500/20 text-pink-400 border border-pink-500/20'} transition-all text-xs font-bold">
-                                <i class="fa-solid fa-heart ${art.userLiked ? 'animate-bounce' : ''}"></i>
-                                <span>${art.likes}</span>
+                            <button onclick="toggleGalleryLike('${art.id}', event)" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full ${hasLiked ? 'bg-pink-500 text-white' : 'bg-artDark hover:bg-pink-500/20 text-pink-400 border border-pink-500/20'} transition-all text-xs font-bold">
+                                <i class="fa-solid fa-heart ${hasLiked ? 'animate-bounce' : ''}"></i>
+                                <span>${art.likes || 0}</span>
                             </button>
-
                             <div class="flex items-center gap-3">
                                 <button onclick="openArtworkModal(${globalIndex})" class="text-xs text-gray-400 hover:text-white flex items-center gap-1 transition-colors">
-                                    <i class="fa-solid fa-comment text-purple-400"></i> ${art.comments.length}
+                                    <i class="fa-solid fa-comment text-purple-400"></i> ${commentsCount}
                                 </button>
                                 <a href="#comisiones" onclick="preselectCommissionType('${art.category}')" class="text-xs font-bold text-cyan-400 hover:text-cyan-300 flex items-center gap-1">
                                     Encargar <i class="fa-solid fa-arrow-right text-[10px]"></i>
@@ -746,34 +753,31 @@
             });
         }
 
-        function toggleGalleryLike(artId, event) {
+        window.toggleGalleryLike = async function(artId, event) {
             if(event) event.stopPropagation();
+            if (!isFirebaseActive) return;
+
             const art = artworks.find(a => a.id === artId);
             if (!art) return;
 
-            if (art.userLiked) {
-                art.likes--;
-                art.userLiked = false;
+            const artRef = doc(db, 'artifacts', appId, 'public', 'data', 'artworks', artId);
+            let currentLikes = art.likes || 0;
+
+            if (localLikedArtworks.has(artId)) {
+                localLikedArtworks.delete(artId);
+                await updateDoc(artRef, { likes: Math.max(0, currentLikes - 1) });
                 showToast("Se eliminó de tus favoritas", "info");
             } else {
-                art.likes++;
-                art.userLiked = true;
+                localLikedArtworks.add(artId);
+                await updateDoc(artRef, { likes: currentLikes + 1 });
                 showToast("¡Añadido a tus obras favoritas!", "success");
             }
-
-            renderGallery();
-            updateStats();
-
-            // If modal is currently showing this art, update modal counters
-            if (artworks[currentModalArtIndex]?.id === artId) {
-                updateModalLikeUI();
-            }
-        }
+        };
 
         /* ==========================================================================
-           3. LIGHTBOX MODAL & COMMENTS LOGIC
+           LIGHTBOX MODAL & COMMENTS LOGIC
            ========================================================================== */
-        function openArtworkModal(index) {
+        window.openArtworkModal = function(index) {
             currentModalArtIndex = index;
             const art = artworks[index];
             if (!art) return;
@@ -789,49 +793,52 @@
 
             document.getElementById('artwork-modal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
-        }
+        };
 
-        function closeArtworkModal() {
+        window.closeArtworkModal = function() {
             document.getElementById('artwork-modal').classList.add('hidden');
             document.body.style.overflow = 'auto';
-        }
+        };
 
-        function navigateGallery(direction) {
+        window.navigateGallery = function(direction) {
             currentModalArtIndex += direction;
             if (currentModalArtIndex < 0) currentModalArtIndex = artworks.length - 1;
             if (currentModalArtIndex >= artworks.length) currentModalArtIndex = 0;
             openArtworkModal(currentModalArtIndex);
-        }
+        };
 
         function updateModalLikeUI() {
             const art = artworks[currentModalArtIndex];
+            if(!art) return;
             const btn = document.getElementById('modal-art-like-btn');
             const count = document.getElementById('modal-art-like-count');
+            const hasLiked = localLikedArtworks.has(art.id);
 
-            count.innerText = art.likes;
-            if (art.userLiked) {
+            count.innerText = art.likes || 0;
+            if (hasLiked) {
                 btn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-rose-500 text-white transition-all text-xs font-bold shadow-lg shadow-rose-500/30";
             } else {
                 btn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 hover:bg-rose-500 hover:text-white transition-all text-xs font-bold";
             }
         }
 
-        function toggleModalLike() {
+        window.toggleModalLike = function() {
             const art = artworks[currentModalArtIndex];
-            toggleGalleryLike(art.id, null);
-        }
+            if(art) toggleGalleryLike(art.id, null);
+        };
 
         function renderModalComments() {
             const art = artworks[currentModalArtIndex];
             const list = document.getElementById('modal-comments-list');
             list.innerHTML = '';
 
-            if (art.comments.length === 0) {
-                list.innerHTML = `<p class="text-xs text-gray-500 italic py-2">Aún no hay comentarios. ¡Sé el primero en opinar sobre esta creación!</p>`;
+            const comments = art.comments || [];
+            if (comments.length === 0) {
+                list.innerHTML = `<p class="text-xs text-gray-500 italic py-2">Aún no hay comentarios. ¡Sé el primero en opinar!</p>`;
                 return;
             }
 
-            art.comments.forEach(c => {
+            comments.forEach(c => {
                 const item = document.createElement('div');
                 item.className = "p-3 rounded-xl bg-artDark/80 border border-gray-800 text-xs space-y-1";
                 item.innerHTML = `
@@ -845,87 +852,95 @@
             });
         }
 
-        function handleAddArtworkComment(e) {
+        window.handleAddArtworkComment = async function(e) {
             e.preventDefault();
+            if (!isFirebaseActive) return;
+
             const author = document.getElementById('comment-author').value.trim();
             const text = document.getElementById('comment-text').value.trim();
-
             if (!author || !text) return;
 
             const art = artworks[currentModalArtIndex];
-            art.comments.push({
+            const newComment = {
                 author: author,
                 text: text,
-                date: 'Ahora'
-            });
+                date: new Date().toLocaleDateString()
+            };
 
+            const updatedComments = art.comments ? [...art.comments, newComment] : [newComment];
+            const artRef = doc(db, 'artifacts', appId, 'public', 'data', 'artworks', art.id);
+            
             document.getElementById('comment-text').value = '';
-            renderModalComments();
-            renderGallery();
-            showToast("Comentario publicado exitosamente", "success");
-        }
+            await updateDoc(artRef, { comments: updatedComments });
+            showToast("Comentario publicado y sincronizado.", "success");
+        };
 
         /* ==========================================================================
-           4. CLIENT CONSULTATIONS & CHAT LOGIC
+           CLIENT CONSULTATIONS & CHAT LOGIC
            ========================================================================== */
-        function preselectCommissionType(cat) {
-            const select = document.getElementById('client-type');
-            select.value = cat;
-        }
+        window.preselectCommissionType = function(cat) {
+            document.getElementById('client-type').value = cat;
+        };
 
-        function previewCommissionImage(e) {
+        window.previewCommissionImage = function(e) {
             const file = e.target.files[0];
             if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    tempCommissionImageBase64 = event.target.result;
-                    document.getElementById('comm-preview-img').src = tempCommissionImageBase64;
+                compressImage(file, (dataUrl) => {
+                    tempCommissionImageBase64 = dataUrl;
+                    document.getElementById('comm-preview-img').src = dataUrl;
                     document.getElementById('commission-upload-prompt').classList.add('hidden');
                     document.getElementById('commission-image-preview').classList.remove('hidden');
-                };
-                reader.readAsDataURL(file);
+                });
             }
-        }
+        };
 
-        function handleCommissionSubmit(e) {
+        window.handleCommissionSubmit = async function(e) {
             e.preventDefault();
+            if (!isFirebaseActive) return;
+
+            const btn = document.getElementById('btn-submit-comm');
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Enviando...';
+            btn.disabled = true;
+
             const name = document.getElementById('client-name').value.trim();
             const type = document.getElementById('client-type').value;
             const desc = document.getElementById('client-msg').value.trim();
-
             const imgUrl = tempCommissionImageBase64 || 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=600&q=80';
 
+            const newCommId = 'comm-' + Date.now();
             const newComm = {
-                id: 'comm-' + Date.now(),
                 clientName: name,
                 artType: type,
                 description: desc,
                 image: imgUrl,
-                status: 'Pendiente',
-                timestamp: 'Justo Ahora',
-                chat: [
-                    { sender: 'client', author: name, text: desc, time: 'Ahora' }
-                ]
+                status: 'Pendiente', // El punto rojo se dispara por esto
+                timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                createdAt: Date.now(),
+                chat: [{ sender: 'client', author: name, text: desc, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }]
             };
 
-            consultations.unshift(newComm);
-            selectedCommId = newComm.id;
+            await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'consultations', newCommId), newComm);
 
-            // Reset form
             document.getElementById('commission-form').reset();
             document.getElementById('commission-upload-prompt').classList.remove('hidden');
             document.getElementById('commission-image-preview').classList.add('hidden');
             tempCommissionImageBase64 = '';
-
-            renderConsultationsList();
-            renderActiveChat();
-            updateStats();
-            showToast("¡Consulta y propuesta enviada! Revisa el chat interactivo.", "success");
-        }
+            
+            btn.innerHTML = '<i class="fa-solid fa-comments mr-2"></i> Iniciar Consulta & Chat';
+            btn.disabled = false;
+            
+            selectedCommId = newCommId;
+            showToast("¡Propuesta enviada en tiempo real! Mira tu sala de chat.", "success");
+        };
 
         function renderConsultationsList() {
             const container = document.getElementById('consultation-list');
             container.innerHTML = '';
+
+            if (consultations.length === 0) {
+                container.innerHTML = `<div class="p-4 text-center text-xs text-gray-500">No hay consultas activas.</div>`;
+                return;
+            }
 
             consultations.forEach(comm => {
                 const isActive = comm.id === selectedCommId;
@@ -936,10 +951,11 @@
                     renderActiveChat();
                 };
 
-                card.className = `p-3 rounded-2xl cursor-pointer transition-all border ${
-                    isActive 
-                    ? 'bg-amber-500/10 border-amber-500/50 text-white' 
-                    : 'bg-artDark/50 border-gray-800/80 hover:bg-artDark text-gray-300'
+                // Si está pendiente y el artista está mirando, ponerle un borde llamativo
+                let statusStyle = (comm.status === 'Pendiente' && isArtistMode) ? 'border-pink-500/60 shadow-[0_0_10px_rgba(236,72,153,0.3)]' : 'border-gray-800/80';
+
+                card.className = `p-3 mb-2 rounded-2xl cursor-pointer transition-all border ${
+                    isActive ? 'bg-amber-500/10 border-amber-500/50 text-white' : `bg-artDark/50 hover:bg-artDark text-gray-300 ${statusStyle}`
                 }`;
 
                 card.innerHTML = `
@@ -947,29 +963,30 @@
                         <img src="${comm.image}" class="w-11 h-11 rounded-xl object-cover border border-gray-700">
                         <div class="flex-1 min-w-0">
                             <div class="flex items-center justify-between">
-                                <h4 class="text-xs font-bold text-white truncate">${escapeHtml(comm.clientName)}</h4>
+                                <h4 class="text-xs font-bold text-white truncate flex items-center gap-1">
+                                    ${comm.status === 'Pendiente' ? '<span class="w-1.5 h-1.5 rounded-full bg-pink-500"></span>' : ''}
+                                    ${escapeHtml(comm.clientName)}
+                                </h4>
                                 <span class="text-[9px] text-amber-400 font-semibold">${comm.artType}</span>
                             </div>
                             <p class="text-[11px] text-gray-400 truncate mt-0.5">${escapeHtml(comm.description)}</p>
                         </div>
                     </div>
                 `;
-
                 container.appendChild(card);
             });
         }
 
-        function renderActiveChat() {
+        window.renderActiveChat = function() {
             const activeArea = document.getElementById('chat-active-area');
             const comm = consultations.find(c => c.id === selectedCommId);
 
             if (!comm) {
-                activeArea.innerHTML = `<p class="text-xs text-gray-500 text-center my-auto">Selecciona una consulta para abrir la sala de chat.</p>`;
+                activeArea.innerHTML = `<p class="text-xs text-gray-500 text-center my-auto">Selecciona una consulta para interactuar.</p>`;
                 return;
             }
 
             let chatHtml = `
-                <!-- Chat Header -->
                 <div class="pb-3 border-b border-artBorder flex items-center justify-between">
                     <div class="flex items-center gap-3">
                         <img src="${comm.image}" class="w-10 h-10 rounded-xl object-cover border border-cyan-500/30">
@@ -979,23 +996,26 @@
                         </div>
                     </div>
                     <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
-                        comm.status === 'En Proceso' ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30' : 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
+                        comm.status === 'Pendiente' ? 'bg-pink-500/20 text-pink-300 border border-pink-500/30' : 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
                     }">
                         ${comm.status}
                     </span>
                 </div>
 
-                <!-- Reference Image Preview Toggle -->
+                <!-- Botón de Descarga para el Artista / Cliente -->
                 <div class="my-2 p-2 rounded-xl bg-black/40 border border-artBorder flex items-center justify-between text-xs">
                     <span class="text-gray-400 text-[11px]"><i class="fa-solid fa-image text-cyan-400 mr-1.5"></i>Foto de Referencia</span>
-                    <a href="${comm.image}" target="_blank" class="text-cyan-400 hover:underline text-[11px] font-semibold">Ver Completa <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i></a>
+                    <div class="flex gap-3">
+                        <a href="${comm.image}" target="_blank" class="text-cyan-400 hover:underline text-[11px] font-semibold"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>Ver</a>
+                        <a href="${comm.image}" download="Referencia_${comm.clientName.replace(/\s+/g, '_')}.jpg" class="text-emerald-400 hover:underline text-[11px] font-semibold"><i class="fa-solid fa-download mr-1"></i>Descargar</a>
+                    </div>
                 </div>
 
-                <!-- Messages Thread -->
-                <div class="flex-1 overflow-y-auto custom-scrollbar my-2 space-y-3 pr-1 max-h-[300px]">
+                <div class="flex-1 overflow-y-auto custom-scrollbar my-2 space-y-3 pr-1 max-h-[300px]" id="chat-messages-container">
             `;
 
-            comm.chat.forEach(msg => {
+            const chatLog = comm.chat || [];
+            chatLog.forEach(msg => {
                 const isArtist = msg.sender === 'artist';
                 chatHtml += `
                     <div class="flex flex-col ${isArtist ? 'items-end' : 'items-start'}">
@@ -1013,21 +1033,24 @@
 
             chatHtml += `
                 </div>
-
-                <!-- Reply Input -->
                 <form onsubmit="handleSendChatMessage(event, '${comm.id}')" class="pt-2 border-t border-artBorder flex items-center gap-2">
-                    <input type="text" id="chat-input-${comm.id}" placeholder="${isArtistMode ? 'Responder como el Artista...' : 'Escribe una respuesta a tu propuesta...'}" required class="flex-1 bg-artCard border border-artBorder rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-cyan-400">
+                    <input type="text" id="chat-input-${comm.id}" placeholder="${isArtistMode ? 'Responder como el Artista...' : 'Escribe una respuesta...'}" required class="flex-1 bg-artCard border border-artBorder rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-cyan-400">
                     <button type="submit" class="px-4 py-2.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-gray-950 font-bold text-xs shadow-md shadow-cyan-400/20">
                         <i class="fa-solid fa-paper-plane"></i>
                     </button>
                 </form>
             `;
-
             activeArea.innerHTML = chatHtml;
-        }
 
-        function handleSendChatMessage(e, commId) {
+            // Scroll to bottom
+            const msgContainer = document.getElementById('chat-messages-container');
+            if(msgContainer) msgContainer.scrollTop = msgContainer.scrollHeight;
+        };
+
+        window.handleSendChatMessage = async function(e, commId) {
             e.preventDefault();
+            if (!isFirebaseActive) return;
+
             const input = document.getElementById(`chat-input-${commId}`);
             const text = input.value.trim();
             if (!text) return;
@@ -1037,157 +1060,209 @@
 
             const senderType = isArtistMode ? 'artist' : 'client';
             const authorName = isArtistMode ? 'Artista (Taller)' : comm.clientName;
-
-            comm.chat.push({
+            
+            const newMessage = {
                 sender: senderType,
                 author: authorName,
                 text: text,
                 time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-            });
+            };
 
-            if (isArtistMode && comm.status === 'Pendiente') {
-                comm.status = 'En Proceso';
-            }
+            const updatedChat = comm.chat ? [...comm.chat, newMessage] : [newMessage];
+            // Si el artista responde, la propuesta ya está "En Proceso"
+            const newStatus = (isArtistMode && comm.status === 'Pendiente') ? 'En Proceso' : comm.status;
 
             input.value = '';
-            renderActiveChat();
-            renderConsultationsList();
-            showToast("Mensaje enviado en el chat", "success");
-        }
+            
+            const commRef = doc(db, 'artifacts', appId, 'public', 'data', 'consultations', commId);
+            await updateDoc(commRef, { 
+                chat: updatedChat,
+                status: newStatus
+            });
+            // Snapshot handles UI updates
+        };
 
         /* ==========================================================================
-           5. ARTIST MODE & AUTHENTICATION
+           ARTIST MODE, PERMISSIONS & PROFILE EDIT
            ========================================================================== */
-        function toggleArtistModeModal() {
+        window.toggleArtistModeModal = function() {
             if (isArtistMode) {
-                // Logout from artist mode
                 isArtistMode = false;
                 updateArtistModeUI();
                 showToast("Modo Artista desactivado", "info");
             } else {
                 document.getElementById('artist-pin-modal').classList.remove('hidden');
             }
-        }
+        };
 
-        function closeArtistPinModal() {
+        window.closeArtistPinModal = function() {
             document.getElementById('artist-pin-modal').classList.add('hidden');
-        }
+        };
 
-        function handleArtistAuth(e) {
+        window.handleArtistAuth = function(e) {
             e.preventDefault();
             const pin = document.getElementById('artist-pin-input').value;
-            if (pin === 'Claro2022*/') { // Updated password requirement
+            if (pin === 'Claro2022*/') {
                 isArtistMode = true;
                 updateArtistModeUI();
                 closeArtistPinModal();
                 document.getElementById('artist-pin-input').value = '';
-                showToast("¡Modo Artista activado con éxito!", "success");
+                showToast("¡Modo Artista activado! Puedes editar contenido.", "success");
             } else {
-                showToast("Clave incorrecta. Por favor verifica tu contraseña.", "error");
+                showToast("Clave incorrecta.", "error");
             }
-        }
+        };
 
         function updateArtistModeUI() {
             const btnText = document.getElementById('artist-status-text');
             const btnIcon = document.getElementById('artist-status-icon');
             const btn = document.getElementById('artist-mode-btn');
+            
+            // UI elements that require Artist Auth
+            const uploadBtn = document.getElementById('upload-new-art-btn');
+            const editProfileBtn = document.getElementById('edit-profile-btn');
 
             if (isArtistMode) {
                 btnText.innerText = "Artista Activo";
                 btnIcon.className = "fa-solid fa-user-check text-sm";
                 btn.className = "relative group px-4 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 flex items-center gap-2 border border-emerald-500 bg-emerald-500/20 text-emerald-300 shadow-lg shadow-emerald-500/20";
+                
+                uploadBtn.classList.remove('hidden');
+                editProfileBtn.classList.remove('hidden');
+                
+                // Forzar re-render de lista para limpiar status 'Pendiente' si es que ahora el artista lo ve
+                renderConsultationsList();
             } else {
                 btnText.innerText = "Modo Artista";
                 btnIcon.className = "fa-solid fa-lock text-sm";
                 btn.className = "relative group px-4 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 flex items-center gap-2 border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 hover:bg-cyan-400 hover:text-gray-950 shadow-lg shadow-cyan-500/10";
+                
+                uploadBtn.classList.add('hidden');
+                editProfileBtn.classList.add('hidden');
             }
-
             renderActiveChat();
         }
 
-        /* ==========================================================================
-           6. NEW ARTWORK UPLOAD LOGIC
-           ========================================================================== */
-        function openUploadModal() {
-            if (!isArtistMode) {
-                showToast("Por favor autentícate en 'Modo Artista' para subir nuevas obras.", "info");
-                toggleArtistModeModal();
-                return;
+        // Profile Edit Logic
+        window.openEditProfileModal = function() {
+            document.getElementById('edit-profile-url').value = document.getElementById('profile-image').src;
+            document.getElementById('edit-profile-bio-text').value = document.getElementById('profile-bio').innerText;
+            document.getElementById('edit-profile-modal').classList.remove('hidden');
+        };
+
+        window.closeEditProfileModal = function() {
+            document.getElementById('edit-profile-modal').classList.add('hidden');
+        };
+
+        window.handleProfileSubmit = async function(e) {
+            e.preventDefault();
+            if(!isFirebaseActive) return;
+
+            const btn = document.getElementById('btn-save-profile');
+            btn.innerText = "Guardando...";
+            
+            let imageUrl = document.getElementById('edit-profile-url').value.trim();
+            const bioText = document.getElementById('edit-profile-bio-text').value.trim();
+            const fileInput = document.getElementById('edit-profile-file').files[0];
+
+            const saveToDB = async (finalImageUrl) => {
+                const profileRef = doc(db, 'artifacts', appId, 'public', 'data', 'config', 'profile');
+                await setDoc(profileRef, { image: finalImageUrl, bio: bioText }, { merge: true });
+                closeEditProfileModal();
+                btn.innerText = "Guardar Cambios";
+                showToast("¡Perfil actualizado! Todos pueden ver los cambios.", "success");
+            };
+
+            if (fileInput) {
+                compressImage(fileInput, (compressedUrl) => {
+                    saveToDB(compressedUrl);
+                });
+            } else {
+                saveToDB(imageUrl);
             }
+        };
+
+        /* ==========================================================================
+           NEW ARTWORK UPLOAD LOGIC
+           ========================================================================== */
+        window.openUploadModal = function() {
             document.getElementById('upload-modal').classList.remove('hidden');
-        }
+        };
 
-        function closeUploadModal() {
+        window.closeUploadModal = function() {
             document.getElementById('upload-modal').classList.add('hidden');
-        }
+        };
 
-        function previewUploadImage(e) {
+        window.previewUploadImage = function(e) {
             const file = e.target.files[0];
             if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    tempUploadImageBase64 = event.target.result;
-                    document.getElementById('upload-preview-img').src = tempUploadImageBase64;
+                compressImage(file, (dataUrl) => {
+                    tempUploadImageBase64 = dataUrl;
+                    document.getElementById('upload-preview-img').src = dataUrl;
                     document.getElementById('upload-preview-box').classList.remove('hidden');
-                };
-                reader.readAsDataURL(file);
+                });
             }
-        }
+        };
 
-        function previewUploadUrl(url) {
+        window.previewUploadUrl = function(url) {
             if (url) {
                 tempUploadImageBase64 = url;
                 document.getElementById('upload-preview-img').src = url;
                 document.getElementById('upload-preview-box').classList.remove('hidden');
             }
-        }
+        };
 
-        function handleUploadArtworkSubmit(e) {
+        window.handleUploadArtworkSubmit = async function(e) {
             e.preventDefault();
+            if (!isFirebaseActive) return;
+            
+            const btn = document.getElementById('btn-publish-art');
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Publicando...';
+
             const title = document.getElementById('upload-title').value.trim();
             const category = document.getElementById('upload-category').value;
             const medium = document.getElementById('upload-medium').value.trim();
             const desc = document.getElementById('upload-desc').value.trim();
-
             const imageSrc = tempUploadImageBase64 || 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1000&q=80';
 
+            const newArtId = 'art-' + Date.now();
             const newArt = {
-                id: 'art-' + Date.now(),
                 title: title,
                 category: category,
                 medium: medium,
                 image: imageSrc,
                 description: desc,
                 likes: 0,
-                userLiked: false,
-                comments: []
+                comments: [],
+                createdAt: Date.now()
             };
 
-            artworks.unshift(newArt);
+            await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'artworks', newArtId), newArt);
 
             // Reset form
             document.getElementById('upload-title').value = '';
             document.getElementById('upload-medium').value = '';
             document.getElementById('upload-desc').value = '';
             document.getElementById('upload-url').value = '';
+            document.getElementById('upload-file').value = '';
             document.getElementById('upload-preview-box').classList.add('hidden');
             tempUploadImageBase64 = '';
+            
+            btn.innerHTML = 'Publicar Obra';
 
             closeUploadModal();
             filterGallery('all');
-            updateStats();
-            showToast("¡Nueva obra añadida exitosamente a la galería!", "success");
-        }
+            showToast("¡Obra publicada en la nube correctamente!", "success");
+        };
 
         /* ==========================================================================
-           7. UTILITIES & TOASTS
+           UTILITIES & BOOTSTRAP
            ========================================================================== */
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
+        window.toggleMobileMenu = function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        };
 
-        function showToast(message, type = "info") {
+        window.showToast = function(message, type = "info") {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
             
@@ -1204,22 +1279,23 @@
 
             toast.className = `glass-panel border px-4 py-3 rounded-2xl shadow-xl flex items-center gap-3 text-xs font-semibold transform transition-all duration-300 translate-x-10 opacity-0 ${bgClass}`;
             toast.innerHTML = `<i class="fa-solid ${icon} text-base"></i> <span>${escapeHtml(message)}</span>`;
-
             container.appendChild(toast);
 
-            setTimeout(() => {
-                toast.classList.remove('translate-x-10', 'opacity-0');
-            }, 50);
-
+            setTimeout(() => toast.classList.remove('translate-x-10', 'opacity-0'), 50);
             setTimeout(() => {
                 toast.classList.add('opacity-0', 'translate-x-10');
                 setTimeout(() => toast.remove(), 300);
             }, 3500);
-        }
+        };
 
         function escapeHtml(str) {
-            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+            return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
         }
+
+        // STARTUP
+        window.onload = function() {
+            initApp(); 
+        };
     </script>
 </body>
 </html>
